@@ -1,0 +1,50 @@
+---
+import NotebookLayout from '../../layouts/NotebookLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const notes = await getCollection('keynotes');
+  return notes.map((note) => ({
+    params: { slug: note.slug },
+    props: { note },
+  }));
+}
+
+const { note } = Astro.props;
+const { Content } = await note.render();
+---
+
+<NotebookLayout title={note.data.title}>
+  <div class="min-h-[80vh]">
+    <a
+      href="/"
+      class="inline-flex items-center gap-1 font-sans text-sm text-slate-500 hover:text-notebook-blue transition-colors mb-6 no-underline"
+    >
+      ← Back to Binder
+    </a>
+
+    <div class="wireframe-block p-6 rounded-lg mb-6">
+      <span class="block-label">Note</span>
+      <div class="flex flex-wrap items-start justify-between gap-4 mt-2">
+        <h1 class="font-handwriting text-4xl md:text-5xl text-notebook-blue font-bold">
+          {note.data.title}
+        </h1>
+        <time class="font-sans text-xs text-slate-400 whitespace-nowrap shrink-0 bg-slate-100 px-3 py-1 rounded-full">
+          {note.data.date}
+        </time>
+      </div>
+      <div class="flex flex-wrap gap-2 mt-4">
+        {note.data.tags.map((tag) => (
+          <span class="block-label !static !text-[0.65rem]">{tag}</span>
+        ))}
+      </div>
+    </div>
+
+    <div class="wireframe-block p-6 md:p-8 rounded-lg">
+      <span class="block-label">Content</span>
+      <article class="note-content mt-4">
+        <Content />
+      </article>
+    </div>
+  </div>
+</NotebookLayout>
