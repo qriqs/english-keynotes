@@ -1,0 +1,14 @@
+---
+export interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<div class="wireframe-block p-6 rounded-lg mb-6">
+  <span class="block-label">{label}</span>
+  <div class="mt-2">
+    <slot />
+  </div>
+</div>

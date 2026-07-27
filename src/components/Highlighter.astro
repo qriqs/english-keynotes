@@ -1,0 +1,10 @@
+---
+export interface Props {
+  color?: 'yellow' | 'green';
+}
+
+const { color = 'yellow' } = Astro.props;
+const className = color === 'green' ? 'highlighter-green' : 'highlighter-yellow';
+---
+
+<span class={className}><slot /></span>
