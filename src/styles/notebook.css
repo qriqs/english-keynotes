@@ -1,0 +1,129 @@
+.graph-paper {
+  background-color: #fdfdfd;
+  background-image:
+    linear-gradient(#e2e8f0 1px, transparent 1px),
+    linear-gradient(90deg, #e2e8f0 1px, transparent 1px);
+  background-size: 24px 24px;
+  position: relative;
+}
+
+.margin-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 28%;
+  width: 2px;
+  background-color: rgba(239, 68, 68, 0.4);
+  z-index: 1;
+}
+
+.binding-holes {
+  position: absolute;
+  left: 10px;
+  top: 0;
+  bottom: 0;
+  width: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  z-index: 2;
+}
+
+.hole {
+  width: 14px;
+  height: 14px;
+  background-color: #0f172a;
+  border-radius: 50%;
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.highlighter-yellow {
+  background-color: rgba(253, 224, 71, 0.5);
+  padding: 0 4px;
+  border-radius: 2px;
+}
+
+.highlighter-green {
+  background-color: rgba(134, 239, 172, 0.5);
+  padding: 0 4px;
+  border-radius: 2px;
+}
+
+.wireframe-block {
+  border: 2px dashed #94a3b8;
+  background-color: rgba(255, 255, 255, 0.7);
+  position: relative;
+  z-index: 10;
+}
+
+.block-label {
+  position: absolute;
+  top: -12px;
+  left: 10px;
+  background: #cbd5e1;
+  color: #1e293b;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.note-content h1,
+.note-content h2,
+.note-content h3 {
+  font-family: 'Caveat', cursive;
+  color: #1e3a8a;
+}
+
+.note-content h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.note-content h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.note-content h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.note-content p {
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  color: #1e3a8a;
+  line-height: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.note-content ul,
+.note-content ol {
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  color: #1e3a8a;
+  line-height: 2rem;
+  padding-left: 1.5rem;
+}
+
+.note-content strong {
+  font-weight: 700;
+}
+
+.note-content blockquote {
+  border-left: 3px solid rgba(239, 68, 68, 0.4);
+  padding-left: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+}
+
+.note-content code {
+  background-color: rgba(203, 213, 225, 0.4);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Inter', monospace;
+  font-size: 0.9rem;
+}
