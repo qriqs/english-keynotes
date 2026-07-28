@@ -5,6 +5,17 @@ import Search from 'astro-pagefind/components/Search';
 import { getCollection } from 'astro:content';
 
 const allNotes = await getCollection('keynotes');
+
+// Sort notes by date descending (most recent first)
+allNotes.sort((a, b) => {
+  const parseDate = (dateStr) => {
+    const [day, month, year] = dateStr.split('|').map((s) => s.trim());
+    const fullYear = year.length === 2 ? `20${year}` : year;
+    return `${fullYear}${month}${day}`;
+  };
+  return parseDate(b.data.date).localeCompare(parseDate(a.data.date));
+});
+
 const allTags = [...new Set(allNotes.flatMap((note) => note.data.tags))].sort();
 
 const today = new Date().toLocaleDateString('en-GB', {
@@ -14,7 +25,7 @@ const today = new Date().toLocaleDateString('en-GB', {
 }).replace(/\//g, ' | ');
 ---
 
-<NotebookLayout title="Home & Search">
+<NotebookLayout title="Home & Search" ignorePagefind={true}>
   
   <!-- HEADER BLOCK -->
   <div class="wireframe-block p-4 rounded-lg flex flex-col sm:flex-row justify-between items-start sm:items-center">
