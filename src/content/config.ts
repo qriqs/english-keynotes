@@ -7,6 +7,11 @@ const keynotesCollection = defineCollection({
     date: z.string(),
     tags: z.array(z.string()),
     description: z.string().optional(),
+    vocab: z.array(z.object({
+      term: z.string(),
+      def: z.string()
+    })).optional(),
+    homework: z.string().optional(),
   }),
 });
 
