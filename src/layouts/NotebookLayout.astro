@@ -28,7 +28,6 @@ const { title } = Astro.props;
     <div class="graph-paper w-full max-w-4xl rounded-r-2xl rounded-l-md shadow-2xl relative overflow-hidden py-10 px-12 md:px-16 mx-auto min-h-[90vh] flex flex-col gap-6 text-slate-800">
       
       <!-- Notebook specific decorations -->
-      <div class="margin-line hidden md:block"></div>
       <div class="binding-holes">
           {Array.from({ length: 25 }).map(() => <div class="hole"></div>)}
       </div>
