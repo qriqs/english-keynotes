@@ -15,36 +15,92 @@ const { Content } = await note.render();
 ---
 
 <NotebookLayout title={note.data.title}>
-  <div class="min-h-[80vh]">
-    <a
-      href="/"
-      class="inline-flex items-center gap-1 font-sans text-sm text-slate-500 hover:text-notebook-blue transition-colors mb-6 no-underline"
-    >
-      ← Back to Binder
-    </a>
+  
+  <!-- HEADER BLOCK -->
+  <div class="wireframe-block p-4 rounded-lg flex flex-col sm:flex-row justify-between items-start sm:items-center">
+    <span class="block-label">Header Block (Top 10%)</span>
+    <div class="flex items-center gap-2">
+      <span class="font-bold text-gray-500 text-sm">DATE:</span>
+      <span class="handwriting border-b border-gray-300 w-32 inline-block px-2">{note.data.date}</span>
+    </div>
+    <div class="flex items-center gap-2 mt-2 sm:mt-0 w-full sm:w-auto flex-grow sm:ml-8">
+      <span class="font-bold text-gray-500 text-sm">TOPIC:</span>
+      <span class="handwriting border-b border-gray-300 w-full inline-block px-2 text-2xl font-bold">{note.data.title}</span>
+    </div>
+  </div>
 
-    <div class="wireframe-block p-6 rounded-lg mb-6">
-      <span class="block-label">Note</span>
-      <div class="flex flex-wrap items-start justify-between gap-4 mt-2">
-        <h1 class="font-handwriting text-4xl md:text-5xl text-notebook-blue font-bold">
-          {note.data.title}
-        </h1>
-        <time class="font-sans text-xs text-slate-400 whitespace-nowrap shrink-0 bg-slate-100 px-3 py-1 rounded-full">
-          {note.data.date}
-        </time>
+  <!-- MAIN BODY GRID -->
+  <div class="flex-grow flex flex-col md:flex-row gap-6">
+    
+    <!-- LEFT SIDEBAR (Index & Vocab) -->
+    <div class="wireframe-block w-full md:w-[30%] p-4 rounded-lg flex flex-col gap-6 h-fit">
+      <span class="block-label">Sidebar</span>
+      
+      <!-- Tags Box -->
+      <div>
+        <h3 class="font-bold text-gray-400 text-xs tracking-widest uppercase mb-2">Search Tags</h3>
+        <div class="handwriting text-gray-600 border border-gray-200 rounded p-2 bg-gray-50/50 flex flex-wrap gap-2">
+          {note.data.tags.map((tag) => (
+            <span class="bg-blue-100 text-blue-800 text-sm px-2 rounded-full leading-tight font-sans font-medium">{tag}</span>
+          ))}
+        </div>
       </div>
-      <div class="flex flex-wrap gap-2 mt-4">
-        {note.data.tags.map((tag) => (
-          <span class="block-label !static !text-[0.65rem]">{tag}</span>
-        ))}
-      </div>
+
+      <!-- Description / Metadata (fallback if no vocab is provided) -->
+      {note.data.description && !note.data.vocab && (
+        <div class="flex-grow">
+          <h3 class="font-bold text-gray-400 text-xs tracking-widest uppercase mb-2">Summary</h3>
+          <p class="handwriting text-xl text-gray-700 leading-tight">
+            {note.data.description}
+          </p>
+        </div>
+      )}
+
+      <!-- Vocab -->
+      {note.data.vocab && note.data.vocab.length > 0 && (
+        <div class="flex-grow">
+          <h3 class="font-bold text-gray-400 text-xs tracking-widest uppercase mb-2">Concepts</h3>
+          <ul class="space-y-3">
+            {note.data.vocab.map((v) => (
+              <li class="handwriting flex flex-col leading-tight border-b border-gray-100 pb-1">
+                <span class="font-bold text-red-600">{v.term}</span>
+                <span class="text-sm pl-2 font-sans text-gray-600">= {v.def}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
 
-    <div class="wireframe-block p-6 md:p-8 rounded-lg">
-      <span class="block-label">Content</span>
-      <article class="note-content mt-4">
+    <!-- RIGHT MAIN AREA (Core Documentation) -->
+    <div class="wireframe-block w-full md:w-[70%] p-4 sm:p-6 rounded-lg flex flex-col gap-6">
+      <span class="block-label">Documentation</span>
+      <article class="note-content">
         <Content />
       </article>
     </div>
   </div>
+
+  <!-- ACTION / TO-DO BLOCK -->
+  {note.data.homework ? (
+    <div class="wireframe-block p-4 rounded-lg bg-red-50/30 mt-auto flex flex-col gap-2">
+      <span class="block-label">Action / To-Do</span>
+      <div class="flex items-start gap-4">
+        <div class="mt-1">
+          <input type="checkbox" class="w-5 h-5 accent-red-500 rounded border-gray-300" />
+        </div>
+        <div class="handwriting text-xl text-gray-800">
+          <strong class="text-red-600">Review:</strong> {note.data.homework}
+        </div>
+      </div>
+      <a href="/" class="self-end text-sm font-sans text-indigo-500 hover:text-indigo-700 font-medium">← Back to Binder Index</a>
+    </div>
+  ) : (
+    <a href="/" class="wireframe-block p-4 rounded-lg bg-indigo-50/30 mt-auto flex items-center justify-center gap-2 hover:bg-indigo-100/50 transition-colors no-underline group">
+      <span class="block-label">Navigation</span>
+      <span class="text-xl group-hover:-translate-x-1 transition-transform">←</span>
+      <span class="handwriting text-xl text-indigo-800 font-bold">Back to Binder Index</span>
+    </a>
+  )}
+
 </NotebookLayout>
