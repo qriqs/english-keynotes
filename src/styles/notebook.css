@@ -32,7 +32,7 @@
 .hole {
   width: 14px;
   height: 14px;
-  background-color: #0f172a;
+  background-color: #1e293b;
   border-radius: 50%;
   box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
@@ -51,7 +51,7 @@
 
 .wireframe-block {
   border: 2px dashed #94a3b8;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.6);
   position: relative;
   z-index: 10;
 }
@@ -70,9 +70,9 @@
   letter-spacing: 0.05em;
 }
 
+/* Base note-content / mdx-content overrides from the new style */
 .note-content h1,
-.note-content h2,
-.note-content h3 {
+.note-content h2 {
   font-family: 'Caveat', cursive;
   color: #1e3a8a;
 }
@@ -80,37 +80,54 @@
 .note-content h1 {
   font-size: 2.2rem;
   font-weight: 700;
+  margin-bottom: 1rem;
 }
 
 .note-content h2 {
   font-size: 1.8rem;
   font-weight: 600;
+  margin-bottom: 0.75rem;
 }
 
 .note-content h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  color: #818cf8;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  margin-top: 1.5rem;
 }
 
 .note-content p {
   font-family: 'Caveat', cursive;
-  font-size: 1.3rem;
-  color: #1e3a8a;
-  line-height: 1.8rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  color: #374151;
+  margin-bottom: 1rem;
+  line-height: 1.5;
 }
 
 .note-content ul,
 .note-content ol {
   font-family: 'Caveat', cursive;
-  font-size: 1.3rem;
-  color: #1e3a8a;
-  line-height: 2rem;
+  font-size: 1.25rem;
+  color: #374151;
+  line-height: 1.5;
   padding-left: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .note-content strong {
+  color: #dc2626;
   font-weight: 700;
+}
+
+.note-content em {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-style: normal;
 }
 
 .note-content blockquote {
